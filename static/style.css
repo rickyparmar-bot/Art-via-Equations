@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #1a1a2e;
+    color: #eee;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+header p {
+    color: #888;
+    margin-top: 5px;
+}
+
+.upload-section {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#fileInput {
+    padding: 10px;
+    background: #16213e;
+    border: 2px dashed #667eea;
+    border-radius: 8px;
+    color: #eee;
+    cursor: pointer;
+}
+
+#processBtn {
+    padding: 10px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#processBtn:hover {
+    transform: scale(1.05);
+}
+
+.controls {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.controls label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #16213e;
+    padding: 8px 15px;
+    border-radius: 6px;
+}
+
+.controls input {
+    width: 100px;
+    padding: 5px;
+    background: #0f3460;
+    border: 1px solid #667eea;
+    border-radius: 4px;
+    color: white;
+}
+
+#stats {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#stats .loading {
+    color: #f39c12;
+}
+
+#stats .success {
+    color: #27ae60;
+}
+
+#stats .error {
+    color: #e74c3c;
+}
+
+#calculator {
+    width: 100%;
+    height: 70vh;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #667eea;
+}

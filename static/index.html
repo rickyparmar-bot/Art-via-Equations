@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desmos V2 - 1:1 Visual Parity</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Desmos V2</h1>
+            <p>1:1 Image-to-Polygon Vectorization</p>
+        </header>
+        
+        <div class="upload-section">
+            <input type="file" id="fileInput" accept="image/*">
+            <button id="processBtn">Convert to Desmos</button>
+        </div>
+        
+        <div class="controls">
+            <label>
+                Epsilon (ε): 
+                <input type="number" id="epsilon" value="0.0001" step="0.00001">
+            </label>
+            <label>
+                Colors: 
+                <input type="number" id="numColors" value="256" min="2" max="256">
+            </label>
+            <label>
+                Min Area: 
+                <input type="number" id="minArea" value="0" min="0">
+            </label>
+        </div>
+        
+        <div id="stats"></div>
+        
+        <div id="calculator"></div>
+    </div>
+    
+    <script src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>

@@ -3,43 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desmos V2 - 1:1 Visual Parity</title>
+    <title>Desmos Art Workbench</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
     <script src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Desmos V2</h1>
-            <p>1:1 Image-to-Polygon Vectorization</p>
-        </header>
-        
-        <div class="upload-section">
-            <input type="file" id="fileInput" accept="image/*">
-            <button id="processBtn">Convert to Desmos</button>
-        </div>
-        
-        <div class="controls">
-            <label>
-                Epsilon (ε): 
-                <input type="number" id="epsilon" value="0.0001" step="0.00001">
-            </label>
-            <label>
-                Colors: 
-                <input type="number" id="numColors" value="256" min="2" max="256">
-            </label>
-            <label>
-                Min Area: 
-                <input type="number" id="minArea" value="0" min="0">
-            </label>
-        </div>
-        
-        <div id="stats"></div>
-        
-        <div id="calculator"></div>
+    <div class="app-shell">
+        <aside class="sidebar glass-panel">
+            <div class="brand-block">
+                <p class="eyebrow">Desmos Art Developer Tool</p>
+                <h1>Vector Workbench</h1>
+                <p class="subtitle">Photographic image-to-equation pipeline with export and inspection controls.</p>
+            </div>
+
+            <section class="dropzone-panel glass-panel-inner">
+                <div id="dropZone" class="drop-zone" tabindex="0">
+                    <canvas id="blurPreview" width="48" height="48"></canvas>
+                    <div>
+                        <strong>Drop image here</strong>
+                        <p>or browse a local file</p>
+                    </div>
+                    <input type="file" id="fileInput" accept="image/*">
+                </div>
+                <div class="file-meta">
+                    <span id="fileName">No image loaded</span>
+                    <span id="fileSize">0 B</span>
+                </div>
+            </section>
+
+            <section class="control-panel glass-panel-inner">
+                <div class="section-title">Pipeline Controls</div>
+                <label class="field">
+                    <span>Epsilon</span>
+                    <input type="number" id="epsilon" value="0.0001" step="0.00001">
+                </label>
+                <label class="field">
+                    <span>Colors</span>
+                    <input type="number" id="numColors" value="256" min="2" max="256">
+                </label>
+                <label class="field">
+                    <span>Min Area</span>
+                    <input type="number" id="minArea" value="0" min="0">
+                </label>
+                <label class="field">
+                    <span>Max Res</span>
+                    <input type="number" id="maxRes" value="1024" min="128" step="128">
+                </label>
+            </section>
+
+            <section class="progress-panel glass-panel-inner">
+                <div class="section-title">Run State</div>
+                <div class="progress-header">
+                    <span id="stageName">Idle</span>
+                    <span id="stagePercent">0%</span>
+                </div>
+                <div class="progress-track">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <p id="stageDetail" class="stage-detail">Load an image to begin.</p>
+            </section>
+
+            <section class="actions glass-panel-inner">
+                <button id="processBtn" class="btn btn-primary">Vectorize</button>
+                <button id="downloadBtn" class="btn btn-primary" disabled>Download Equations</button>
+                <button id="copyScriptBtn" class="btn btn-secondary" disabled>Copy Desmos Script</button>
+            </section>
+        </aside>
+
+        <main class="workspace">
+            <header class="topbar glass-panel">
+                <div>
+                    <p class="eyebrow">Viewport</p>
+                    <h2>Graph Viewport</h2>
+                </div>
+            </header>
+
+            <section class="viewport-grid">
+                <div class="preview-panel glass-panel">
+                    <div class="preview-stage" id="previewStage">
+                        <div id="calculator"></div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="terminal-footer glass-panel">
+                <div class="terminal-cell">
+                    <span class="terminal-label">Polygon Count</span>
+                    <strong id="metricPolygons">0</strong>
+                </div>
+                <div class="terminal-cell">
+                    <span class="terminal-label">Generation Time</span>
+                    <strong id="metricTime">0 ms</strong>
+                </div>
+                <div class="terminal-cell">
+                    <span class="terminal-label">Palette Usage</span>
+                    <strong id="metricPalette">0 / 0</strong>
+                </div>
+                <div class="terminal-cell">
+                    <span class="terminal-label">Memory Pressure</span>
+                    <strong id="metricMemory">Idle</strong>
+                </div>
+            </footer>
+        </main>
     </div>
-    
-    <script src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+
     <script src="/static/app.js"></script>
 </body>
 </html>

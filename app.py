@@ -45,6 +45,19 @@ def process():
         )
 
         desmos_script = generate_desmos_script(processed)
+        desmos_strings = [poly["latex"] for poly in processed["polygons"]]
+        desmos_expressions = [
+            {
+                "latex": poly["latex"],
+                "color": poly["hex_color"],
+                "fill": True,
+                "fillOpacity": 1,
+                "lineWidth": 0.6,
+                "lineOpacity": 1,
+                "lineColor": poly["hex_color"],
+            }
+            for poly in processed["polygons"]
+        ]
 
         return jsonify(
             {
@@ -52,6 +65,8 @@ def process():
                 "data": {
                     "stats": processed["stats"],
                     "desmos_script": desmos_script,
+                    "desmos_strings": desmos_strings,
+                    "desmos_expressions": desmos_expressions,
                     "polygon_count": processed["stats"]["total_polygons"],
                     "background_color": processed["background_color"],
                 },

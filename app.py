@@ -36,9 +36,9 @@ def process():
             return jsonify({"success": False, "error": "No image provided"}), 400
 
         image_data = data["image"]
-        epsilon = data.get("epsilon", 0.0001)  # 0.0001 = Maximum density
-        num_colors = data.get("num_colors", 256)  # Max colors
-        min_area = data.get("min_area", 0)  # No minimum
+        epsilon = float(data.get("epsilon", 0.0001))  # 0.0001 = Maximum density
+        num_colors = int(data.get("num_colors", 256))  # Max colors
+        min_area = int(data.get("min_area", 0))  # No minimum
 
         processed = process_image(
             image_data, epsilon=epsilon, num_colors=num_colors, min_area=min_area

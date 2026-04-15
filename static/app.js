@@ -64,7 +64,8 @@ async function processImage() {
                     <p class="success">
                         ✅ Generated <strong>${stats.total_polygons}</strong> polygons<br>
                         📐 Dimensions: ${stats.width} x ${stats.height}<br>
-                        🎨 Colors: ${stats.unique_colors}
+                        🎨 Colors: ${stats.requested_colors}<br>
+                        🧩 Palette used: ${stats.unique_colors}
                     </p>
                 `;
 
